@@ -1,0 +1,13 @@
+{
+  "name": "GraveMusicPlayer2.0",
+  "description": "Player de música ambiente Grave",
+  "version": "0.1",
+  "main": "index.html",
+  "window": {
+    "toolbar": true,
+    "frame": true,
+    "position": "center",
+    "width": 350,
+    "height": 430
+  }
+}

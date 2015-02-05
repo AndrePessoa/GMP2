@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>GMP 2.0</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/font-awesome.min.css" rel="stylesheet">
+		<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+	</head>
+	<body>
+		<audio id="audio1" autorun="true"></audio>
+		<audio id="audio2"></audio>
+		<div id="top">
+			<div>
+				<img id="logo" src="images/logo.svg" />
+				<hgroup>
+					<h1>Seu nome aqui</h1>
+					<h2>Grave Media Player</h2>
+				</hgroup>
+				<div id="screens_control">
+					<ul>
+						<li><i class="fa fa-cog"></i></li>
+						<li><i class="fa fa-list-ol"></i></li>
+						<li><i class="fa fa-align-justify"></i></li>						
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="body">
+			<div class="scroll_content">
+				<div id="play_screen" class="screen">
+					<textarea id="list" readonly="readonly"></textarea>
+					<div id="commands">					
+						<div id="playback_control">				
+							<span><i class="fa fa-play"></i></span>
+							<span><i class="fa fa-forward"></i></span>
+						</div>
+						<div id="playback_stream">
+							<div id="likes">
+								<span class="dislike"><i class="fa fa-thumbs-o-down"></i></span>
+								<span class="like"><i class="fa fa-thumbs-o-up"></i></span>
+							</div>
+							<div id="stream">
+								<div></div>
+							</div>
+							<div id="times">
+								<span class="current">0:00</span>
+								<span class="total">0:00</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="support_screen" class="screen">
+					<textarea id="console" readonly="readonly"></textarea>
+					<div id="commands">
+						<form action="#">
+							<input type="button" value="Atualizar"></input>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

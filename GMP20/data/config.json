@@ -1,0 +1,13 @@
+{
+	"version":"0.1",
+	"player":{
+		"name":"teste-3",
+		"password":"asd"
+	},
+	"server":{
+		"protocol":"https:",
+		"hostname":"projetos.entreoutros.com",
+		"port":443,
+		"path":"/gmp20"
+	}
+}

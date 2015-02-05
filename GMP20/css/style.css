@@ -1,0 +1,137 @@
+@font-face {
+  font-family: 'OpenSans';
+  src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+
+html, body, section{
+	font-family: 'OpenSans', sans-serif;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+  color: white;
+}
+
+* {
+  -webkit-user-select: none;
+}
+
+body {
+  background: black;
+}
+
+textarea {
+  height: 150px;
+  width: 330px;
+  padding: 10px;
+  margin: 0px;
+  -webkit-user-select: default;
+  border-radius: 0;
+}
+
+
+/**/
+
+#top {
+  clear: both;
+  width: 100%;
+  display: table;
+}
+
+#top #logo {
+  height: 45px;
+  margin: 15px;
+  float: left;
+}
+
+#top h1{
+  font-size: 19px;
+  font-weight: normal;
+  line-height: 1.2em;
+}
+
+#top h2, #top h3{
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1.2em;
+}
+
+#top hgroup{
+  margin: 15px 0;
+  float: left;
+}
+
+#top #screens_control {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+#top #screens_control ul{  list-style: none; }
+
+#top #screens_control li{  opacity: 0.5; }
+
+#top #screens_control li:hover, #top #screens_control li.active{  opacity: 1; }
+
+
+
+/**/
+
+#body{  
+  overflow-x: scroll;
+  /*height: 550px;*/
+}
+
+#body .screen{
+  float: left;
+  height: 300px;
+  width: 350px;
+}
+
+#body input{
+  padding: 5px;
+  margin: 5px;
+  background: none;
+  color: white;
+  border: 1px solid;
+}
+
+/**/
+
+#playback_control{
+  float: left;
+  margin: 20px;
+}
+
+#playback_control i {
+  cursor: pointer;
+  font-size: 20px;
+  padding: 10px;
+}
+
+#playback_stream{
+  float: right;
+  margin: 20px 20px 20px 0;
+}
+
+#stream {
+  width: 200px;
+  height: 5px;
+  background: #D1D1D1;
+}
+
+#stream div{
+  height: 5px;
+  width: 50px;
+  background: #A2A2B6;
+}
+
+.scroll_content {
+  width: 500%;
+}
+
+#times .total{
+  float: right;
+}
