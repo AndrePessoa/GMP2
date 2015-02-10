@@ -20,6 +20,14 @@ mManager.on('loadmusic-start',function(music){ l.log('"'+music.name+'"',"carrega
 mManager.on('loadmusic-complete',function(music){ l.log('"'+music.name+'"',"carregada com sucesso.");});
 mManager.on('loadmusic-allcomplete',function(data){ l.log("Todas as músicas atualizadas."); });
 
+// TRAY
+var tray = new gui.Tray({ title: 'GRAVE PLAYER', icon: 'images/logo_16.png' });
+var menu = new gui.Menu();
+menu.append(new gui.MenuItem({ type: 'checkbox', label: 'Ativar' }));
+tray.on('click', function(){ win.restore(); });
+win.on('blur',function(){ win.minimize(); });
+tray.menu = menu;
+// ENDS TRAY
 
 config.init();
 mManager.init( config.player, config.server, openDatabase('mydb', '1.0', 'my first database', 2 * 1024 * 1024) );
@@ -40,7 +48,7 @@ $(function(){
 	});
 	mPlayer.init( mManager.localList() );
 
-	$('#commands input').eq(0).click(function(){
+	$('.commands input').eq(0).click(function(){
 		mPlayer.resetList( mManager.localList() );
 		l.log("Lista de músicas atualizada.");
 	});
@@ -55,8 +63,10 @@ $(function(){
 });
 
 function timeFormat(segs){
-	var min = Math.floor( segs / 60 );
+	if( !_.isNumber(segs) ){ return ( "00:00" ); }
+	var mins = Math.floor( segs / 60 );
 	var segs = Math.floor(segs % 60);
+	mins = ( mins < 10 )? "0" + mins : mins ;
 	segs = ( segs < 10 )? "0" + segs : segs ;
-	return ( min + ":" + segs );
+	return ( mins + ":" + segs );
 }

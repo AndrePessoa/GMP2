@@ -4,10 +4,13 @@
   "version": "0.1",
   "main": "index.html",
   "window": {
-    "toolbar": true,
-    "frame": true,
+    "icon": "images/logo.png",
+    "toolbar": false,
+    "frame": false,
     "position": "center",
     "width": 350,
-    "height": 430
+    "height": 375,
+    "max_width": 350,
+    "max_height": 375
   }
 }
