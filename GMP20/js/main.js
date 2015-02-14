@@ -25,7 +25,7 @@ var tray = new gui.Tray({ title: 'GRAVE PLAYER', icon: 'images/logo_16.png' });
 var menu = new gui.Menu();
 menu.append(new gui.MenuItem({ type: 'checkbox', label: 'Ativar' }));
 tray.on('click', function(){ win.restore(); });
-win.on('blur',function(){ win.minimize(); });
+//win.on('blur',function(){ win.minimize(); });
 tray.menu = menu;
 // ENDS TRAY
 
@@ -41,15 +41,14 @@ $(function(){
 	mPlayer = new mPlayer( document );
 	mPlayer.on('musicStart',function( channel, music ){ $('#list').val( music + '\n' + $('#list').val() ); });
 	mPlayer.on('musicPlaying',function( pos, current, total ){ 
-		//console.log( pos, current, total );
 		$('#stream div').css('width', Math.round( pos * 100 ) + "%" );
 		$('#playback_stream > div').last().find('span').eq(0).html( timeFormat(current) );
 		$('#playback_stream > div').last().find('span').eq(1).html( timeFormat(total) );
 	});
-	mPlayer.init( mManager.localList() );
+	mManager.localList( function(list){ mPlayer.init(list);} );
 
 	$('.commands input').eq(0).click(function(){
-		mPlayer.resetList( mManager.localList() );
+		mManager.localList(function(list){ mPlayer.resetList(list);});
 		l.log("Lista de músicas atualizada.");
 	});
 
