@@ -39,7 +39,7 @@ $(function(){
 	l.on('update',function(log){ $('#console').val(l.render()+$('#console').val()); });	
 
 	mPlayer = new mPlayer( document );
-	mPlayer.on('musicStart',function( channel, music ){ $('#list').val( music + '\n' + $('#list').val() ); });
+	mPlayer.on('musicStart',function( channel, music ){ $('#list').val( music.name + '\n' + $('#list').val() ); });
 	mPlayer.on('musicPlaying',function( pos, current, total ){ 
 		$('#stream div').css('width', Math.round( pos * 100 ) + "%" );
 		$('#playback_stream > div').last().find('span').eq(0).html( timeFormat(current) );
@@ -48,7 +48,7 @@ $(function(){
 	mManager.localList( function(list){ mPlayer.init(list);} );
 
 	$('.commands input').eq(0).click(function(){
-		mManager.localList(function(list){ mPlayer.resetList(list);});
+		mManager.updateList(function(){mManager.localList(function(list){ mPlayer.resetList(list);});});
 		l.log("Lista de músicas atualizada.");
 	});
 
