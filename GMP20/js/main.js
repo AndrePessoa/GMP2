@@ -8,8 +8,13 @@ var _ = require('underscore');
 var config = require('config');
 var mManager = require('musicManager');
 var mPlayer = require('musicPlayer');
+var rControl = require('remoteControl');
 
 var l = require('logger'); // logger
+
+
+
+
 
 config.on('load-complete',function(){ l.log("Config carregado com sucesso"); });
 mManager.on('loadlist-complete',function(data){ 
@@ -18,7 +23,8 @@ mManager.on('loadlist-complete',function(data){
 });
 mManager.on('loadmusic-start',function(music){ l.log('"'+music.name+'"',"carregando.");});
 mManager.on('loadmusic-complete',function(music){ l.log('"'+music.name+'"',"carregada com sucesso.");});
-mManager.on('loadmusic-allcomplete',function(data){ l.log("Todas as músicas atualizadas."); });
+mManager.on('',function(data){ l.log("Todas as músicas atualizadas."); mPlayer.getNextMusic(); });
+
 
 // TRAY
 var tray = new gui.Tray({ title: 'GRAVE PLAYER', icon: 'images/logo_16.png' });
@@ -29,36 +35,64 @@ tray.on('click', function(){ win.restore(); });
 tray.menu = menu;
 // ENDS TRAY
 
+
+
+
+//Remote control events
+rControl.on('reset-lists',function(){  mManager.resetLists(); });
+rControl.on('update-list',function(){  mManager.updateList(); });
+rControl.on('play-special',function( data ){   mManager.playSpecial( data ); });
+rControl.on('nothing',function(){  /*/console.log('no orders');/*/ });
+
+
+
 config.init();
 mManager.init( config.player, config.server, openDatabase('mydb', '1.0', 'my first database', 2 * 1024 * 1024) );
+rControl.init(config.player, config.server, 50000);
+
 
 
 $(function(){
 	l.log( "Player verão", config.version);
 	l.init();	
 	l.on('update',function(log){ $('#console').val(l.render()+$('#console').val()); });	
-
+	
 	mPlayer = new mPlayer( document );
-	mPlayer.on('musicStart',function( channel, music ){ $('#list').val( music.name + '\n' + $('#list').val() ); });
+	mPlayer.on('musicStart',function( channel, music ){ 
+		$('#list').val( music.name + '\n' + $('#list').val() ); 
+		console.log('musicStart event on Main');
+	});
 	mPlayer.on('musicPlaying',function( pos, current, total ){ 
 		$('#stream div').css('width', Math.round( pos * 100 ) + "%" );
 		$('#playback_stream > div').last().find('span').eq(0).html( timeFormat(current) );
 		$('#playback_stream > div').last().find('span').eq(1).html( timeFormat(total) );
 	});
-	mManager.localList( function(list){ mPlayer.init(list);} );
+	mPlayer.on('next-music',function (){ var music = mManager.nextMusic(); mPlayer.nextMusic(music); });
+	mManager.on('next-music',function (){ var music = mManager.nextMusic(); mPlayer.nextMusic(music); });
+	//mPlayer.on('next-music',function (){ console.log("Evento no main"); });
+	
+	
+	mManager.localList( function(){ mPlayer.init();} );
 
 	$('.commands input').eq(0).click(function(){
-		mManager.updateList(function(){mManager.localList(function(list){ mPlayer.resetList(list);});});
+		mManager.updateList(function(){mManager.localList(); });
 		l.log("Lista de músicas atualizada.");
 	});
 
 	$('#playback_control > span').eq(1).click(function(){
-		mPlayer.nextMusic();
+		mPlayer.getNextMusic();
+	});
+	$('#teste').click(function(){
+		console.log('teste');
 	});
 
 	$('#screens_control i').each(function(i){
 		$(this).click(function(){ $('#body').animate({scrollLeft: ($(".screen").width() * i )},150);});
 	});
+	
+	mManager.on('log',function(data){ l.log(data); });
+	rControl.on('log',function(data){ l.log(data); });
+	mPlayer.on('log',function(data){ l.log(data); });
 });
 
 function timeFormat(segs){
