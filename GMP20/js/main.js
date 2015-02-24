@@ -9,6 +9,7 @@ var config = require('config');
 var mManager = require('musicManager');
 var mPlayer = require('musicPlayer');
 var rControl = require('remoteControl');
+var sConnector = require('serverConnector');
 
 var l = require('logger'); // logger
 
@@ -17,6 +18,10 @@ var l = require('logger'); // logger
 
 
 config.on('load-complete',function(){ l.log("Config carregado com sucesso"); });
+mManager.on('load-list', function (){
+	var list = sConnector.loadList();
+	mManager.loadList(list);
+})
 mManager.on('loadlist-complete',function(data){ 
 	l.log("Lista carregada com sucesso");
 	this.downloadMusics();
@@ -35,7 +40,7 @@ tray.on('click', function(){ win.restore(); });
 tray.menu = menu;
 // ENDS TRAY
 
-
+sConnector.init(config.player, config.server);
 
 
 //Remote control events
