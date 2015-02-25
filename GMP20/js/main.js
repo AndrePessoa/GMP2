@@ -28,7 +28,7 @@ mManager.on('loadlist-complete',function(data){
 });
 mManager.on('loadmusic-start',function(music){ l.log('"'+music.name+'"',"carregando.");});
 mManager.on('loadmusic-complete',function(music){ l.log('"'+music.name+'"',"carregada com sucesso.");});
-mManager.on('',function(data){ l.log("Todas as músicas atualizadas."); mPlayer.getNextMusic(); });
+mManager.on('',function(data){ l.log("Todas as músicas atualizadas."); });
 
 
 // TRAY
@@ -84,11 +84,15 @@ $(function(){
 		l.log("Lista de músicas atualizada.");
 	});
 
+	$('#playback_control > span').eq(0).click(function(){
+		mPlayer.play();
+	});
 	$('#playback_control > span').eq(1).click(function(){
 		mPlayer.getNextMusic();
 	});
 	$('#teste').click(function(){
 		console.log('teste');
+		mPlayer.playExtra('chamada.ogg');
 	});
 
 	$('#screens_control i').each(function(i){
