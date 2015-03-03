@@ -10,6 +10,7 @@ var mManager = require('musicManager');
 var mPlayer = require('musicPlayer');
 var rControl = require('remoteControl');
 var sConnector = require('serverConnector');
+var server_list;
 
 var l = require('logger'); // logger
 
@@ -18,13 +19,16 @@ var l = require('logger'); // logger
 
 
 config.on('load-complete',function(){ l.log("Config carregado com sucesso"); });
+
+
 mManager.on('load-list', function (){
-	var list = sConnector.loadList();
-	mManager.loadList(list);
-})
-mManager.on('loadlist-complete',function(data){ 
-	l.log("Lista carregada com sucesso");
-	this.downloadMusics();
+	console.log("mManager - load-list");
+	sConnector.loadList();
+});
+sConnector.on('loadlist-complete',function( data ){ 
+	mManager.loadList(data);
+	mManager.downloadMusics();
+	console.log("Lista carregada com sucesso pelo sConnector e passada ao mManager");
 });
 mManager.on('loadmusic-start',function(music){ l.log('"'+music.name+'"',"carregando.");});
 mManager.on('loadmusic-complete',function(music){ l.log('"'+music.name+'"',"carregada com sucesso.");});
@@ -40,7 +44,7 @@ tray.on('click', function(){ win.restore(); });
 tray.menu = menu;
 // ENDS TRAY
 
-sConnector.init(config.player, config.server);
+
 
 
 //Remote control events
@@ -52,6 +56,8 @@ rControl.on('nothing',function(){  /*/console.log('no orders');/*/ });
 
 
 config.init();
+sConnector.init(config.player, config.server);
+sConnector.loadList();
 mManager.init( config.player, config.server, openDatabase('mydb', '1.0', 'my first database', 2 * 1024 * 1024) );
 rControl.init(config.player, config.server, 50000);
 
