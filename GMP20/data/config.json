@@ -2,7 +2,8 @@
 	"version":"0.1",
 	"player":{
 		"name":"teste-3",
-		"password":"asd"
+		"password":"asd",
+		"client":"Teste Misto"
 	},
 	"server":{
 		"protocol":"https:",

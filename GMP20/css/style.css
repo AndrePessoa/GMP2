@@ -128,7 +128,7 @@ div#likes i:hover {
 
 #stream div{
   height: 5px;
-  width: 50px;
+  width: 100%;
   background: #A2A2B6;
 }
 
