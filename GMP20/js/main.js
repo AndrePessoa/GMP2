@@ -15,10 +15,10 @@ var server_list;
 var l = require('logger'); // logger
 
 
-
-
-
-config.on('load-complete',function(){ l.log("Config carregado com sucesso"); });
+config.on('load-complete',function(){ 
+	l.log("Config carregado com sucesso"); 
+	$('h1').text(config.player.client);
+});
 
 
 mManager.on('load-list', function (){
@@ -43,8 +43,6 @@ tray.on('click', function(){ win.restore(); });
 //win.on('blur',function(){ win.minimize(); });
 tray.menu = menu;
 // ENDS TRAY
-
-
 
 
 //Remote control events
@@ -84,6 +82,33 @@ $(function(){
 	
 	mManager.localList( function(){ mPlayer.init();} );
 
+	/* VIEWS */
+
+	var moods = $('#moods').cartesian({pin:"#moodLpin", animate: 0});
+	moods.on('change',function(e){console.log(e);});
+
+	var playlists = $("#playlists_screen ul").choiceList();
+	playlists.on('mudou',function(e){console.log(e);});	
+	playlists.addItem($('<li><i class="fa fa-play"></i>Lorem ipslom asdas qwq sxcxzada132asd asd ad</li>'), 1);
+	playlists.addItem($('<li><i class="fa fa-play"></i>Lorem ipslom asdas qwq sxcxzada132asd asd ad</li>'), 2);
+	playlists.addItem($('<li><i class="fa fa-play"></i>Lorem ipslom asdas qwq sxcxzada132asd asd ad</li>'), 3);
+	playlists.addItem($('<li><i class="fa fa-play"></i>Lorem ipslom asdas qwq sxcxzada132asd asd ad</li>'), 4);
+
+	var configForm = $('#config_screen form').eoForm();
+	configForm.load( config.player );
+	configForm.submit(
+		function(){ 
+			//console.log();
+			config.player = configForm.save();
+			config.save();
+
+			var def = $('#config_screen form [type=submit]').val();
+			$('#config_screen form [type=submit]').val('salvo !');
+			setTimeout(function(){ $('#config_screen form [type=submit]').val(def); },1500);
+			return false;
+		}
+	);
+
 	$('.commands input').eq(0).click(function(){
 		mManager.localList();
 		l.log("Lista de músicas atualizada.");
@@ -100,9 +125,11 @@ $(function(){
 		mPlayer.playExtra('chamada.ogg');
 	});
 
-	$('#screens_control i').each(function(i){
+	$('#screens_control li').each(function(i){
 		$(this).click(function(){ $('#body').animate({scrollLeft: ($(".screen").width() * i )},150);});
 	});
+
+	$('[name="irDebbug"]').click(function(){ $('#body').animate({scrollLeft: ($(".screen").width() * 3 )},150);});
 	
 	mManager.on('log',function(data){ l.log(data); });
 	rControl.on('log',function(data){ l.log(data); });

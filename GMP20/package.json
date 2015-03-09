@@ -11,6 +11,8 @@
     "width": 350,
     "height": 375,
     "max_width": 350,
-    "max_height": 375
+    "max_height": 375,
+    "min_width": 350,
+    "min_height": 375
   }
 }

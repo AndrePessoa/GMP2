@@ -1,14 +1,15 @@
 {
-	"version":"0.1",
-	"player":{
-		"name":"teste-3",
-		"password":"asd",
-		"client":"Teste Misto"
+	"_events": {},
+	"version": "0.1",
+	"player": {
+		"client": "Teste Misto",
+		"name": "teste-3",
+		"password": "asd"
 	},
-	"server":{
-		"protocol":"https:",
-		"hostname":"projetos.entreoutros.com",
-		"port":443,
-		"path":"/gmp20"
+	"server": {
+		"protocol": "https:",
+		"hostname": "projetos.entreoutros.com",
+		"port": 443,
+		"path": "/gmp20"
 	}
 }

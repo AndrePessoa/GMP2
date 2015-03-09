@@ -6,8 +6,8 @@
 }
 
 html, body, section{	
-	height: 100%;
-	width: 100%;
+/*	height: 100%;
+	width: 100%;*/
 	margin: 0;
 	padding: 0;
   color: white;
@@ -16,16 +16,19 @@ html, body, section{
 * {
   font-family: 'OpenSans', sans-serif;
   -webkit-user-select: none;
+  -webkit-transition: all 0.3s;
 }
 
 body {
   background: black;
+  border: 1px solid #0F0F0F;
 }
 
 textarea {
   height: 150px;
   width: 350px;
   padding: 10px 15px;
+  line-height: 20px;
   margin: 0px;
   -webkit-user-select: default;
   border-radius: 0;
@@ -51,6 +54,8 @@ textarea {
   font-size: 19px;
   font-weight: normal;
   line-height: 1.2em;
+
+  position: pointer;
 }
 
 #top h2, #top h3{
@@ -82,12 +87,12 @@ textarea {
 
 #body{  
   overflow-x: hidden;
-  /*height: 550px;*/
+  height: 298px;
 }
 
 #body .screen{
   float: left;
-  height: 255px;
+  /*height: 255px;*/
   width: 350px;
 }
 
@@ -96,6 +101,10 @@ textarea {
 div#likes {
   text-align: right;
   letter-spacing: 5px;
+}
+
+div#likes span{
+  cursor: pointer;
 }
 
 #playback_control{
@@ -142,13 +151,110 @@ div#likes i:hover {
 
 /**/
 
-div#support_screen .commands{
+#playlists_screen li i {
+  margin-right: 5px;
+  display: none;
+}
+
+#playlists_screen li.selecionado { 
+  background: #A2A2B6;
+}
+
+#playlists_screen #moods {
+  display: block;
+  margin: 0 25px 25px;
+  border: 1px solid white;
+  background: black;
+  height: 100px;
+  overflow: hidden;
+  position: relative;
+
+  cursor: pointer;
+}
+
+#playlists_screen #moods:hover {  background: #A2A2B6; }
+/*#playlists_screen #moods:active {  background: white; }*/
+#playlists_screen #moods #moodLpin {
+  /*border: 1px solid;*/
+  border-radius: 10px;
+  background: white;
+  width: 10px;
+  height: 10px;
+  margin: -5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+#playlists_screen #moods:hover  #moodLpin {  background: black }
+/*#playlists_screen #moods:active #moodLpin {  background: #E0E0E0; }*/
+
+
+#playlists_screen li {
+  height: 23px;
+  background: #E0E0E0;
+  line-height: 23px;
+  border-bottom: 1px solid rgb(186, 186, 186);
+  padding: 4px 15px;
+  overflow: hidden;
+  display: block;
+  color: black;
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+#playlists_screen li:hover {
+  background: #A2A2B6;
+}
+
+/**/
+
+#config_screen input[type=text]{
+  width: 65%;
+}
+
+/**/
+
+.commands{
   padding: 15px;
 }
 
-div#support_screen .commands input{
+.commands input{
+  margin-bottom: 10px;
   padding: 5px 15px;
-  background: none;
-  color: white;
   border: 1px solid;
+  background: none;
+  color: white;  
+  width: 49%;
+
+  cursor: pointer;
+}
+
+.commands input:hover,
+.commands input:focus{
+  margin-bottom: 10px;
+  padding: 5px 15px;
+  background: black;
+  color: #A2A2B6;
+  border: 1px solid #A2A2B6;
+}
+
+.commands input:active{
+  margin-bottom: 10px;
+  padding: 5px 15px;
+  background: white;
+  color: black;
+  border: 1px solid white;
+}
+
+label {
+  width: 100%;
+  display: block;
+  clear: both;
+  font-size: 14px;
+}
+
+label input{
+  float: right;
 }

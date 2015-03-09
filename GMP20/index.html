@@ -8,8 +8,12 @@
 		<link href="css/style.css" rel="stylesheet">
 		<link href="css/font-awesome.min.css" rel="stylesheet">
 		<script type="text/javascript" src="js/jquery-1.7.2.js"></script>
-		<script type="text/javascript" src="js/main.js"></script>
-		<script type="text/javascript" src="js/underscore-min.js"></script>		
+		<script type="text/javascript" src="js/jquery.cartesian.js"></script>		
+		<script type="text/javascript" src="js/jquery.choiceList.js"></script>	
+		<script type="text/javascript" src="js/jquery.eo.form.js"></script>	
+		
+		<script type="text/javascript" src="js/underscore-min.js"></script>	
+		<script type="text/javascript" src="js/main.js"></script>	
 	</head>
 	<body >
 		<audio id="audio1" autorun="true"></audio>
@@ -36,7 +40,7 @@
 				<div id="play_screen" class="screen">
 					<textarea id="list" readonly="readonly"></textarea>
 					
-					<div class="commands">					
+					<div class="controls">					
 						<div id="playback_control">				
 							<span><i class="fa fa-play"></i></span>
 							<span><i class="fa fa-forward"></i></span>
@@ -58,14 +62,43 @@
 					</div>
 				</div>
 				<div id="playlists_screen" class="screen">
+					<div id='moods'>
+						<a id="moodLpin"></a>
+					</div>					
+					<ul>
+					</ul>
 				</div>
+				<div id="config_screen" class="screen">
+					<div class="commands">
+						<form action="#">
+							<label>
+								Cliente
+								<input type="text" value="" name='client'></input>
+							</label>
+							<label>
+								Player login
+								<input type="text" value="" name='name'></input>
+							</label>
+							<label>
+								Senha
+								<input type="text" value="" name='password'></input>
+							</label>
+							<div>
+								<input type="submit" value="salvar"></input>
+							</div>
+							<div>
+								<input type="button" value="atualizar playlists"></input>
+								<input type="button" value="manutenção" name="irDebbug"></input>
+							</div>
+						</form>
+					</div>
+				</div>				
 				<div id="support_screen" class="screen">
 					<textarea id="console" readonly="readonly"></textarea>
 					<div class="commands">
-						<form action="#">
-							<input type="button" value="Atualizar playlists"></input>
-							<input type="button" value="Resetar likes"></input>
-							<input type="button" value="Tocar extra" id="teste"></input>
+						<form action="#">							
+							<input type="button" value="resetar likes"></input>
+							<input type="button" value="tocar extra" id="teste"></input>							
 						</form>
 					</div>
 				</div>
