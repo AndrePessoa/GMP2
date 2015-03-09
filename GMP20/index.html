@@ -38,14 +38,14 @@
 					
 					<div class="commands">					
 						<div id="playback_control">				
-							<span><i class="fa fa-play"></i></span>
-							<span><i class="fa fa-forward"></i></span>
+							<span><i id="bt-play" class="fa fa-play"></i></span>
+							<span><i id="bt-forward" class="fa fa-forward"></i></span>
 							
 						</div>
 						<div id="playback_stream">
 							<div id="likes">
-								<span class="dislike"><i class="fa fa-thumbs-o-down"></i></span>
-								<span class="like"><i class="fa fa-thumbs-o-up"></i></span>
+								<span id="bt-dislike" class="dislike"><i class="fa fa-thumbs-o-down"></i></span>
+								<span id="bt-like" class="like"><i class="fa fa-thumbs-o-up"></i></span>
 							</div>
 							<div id="stream">
 								<div></div>
@@ -63,10 +63,14 @@
 					<textarea id="console" readonly="readonly"></textarea>
 					<div class="commands">
 						<form action="#">
-							<input type="button" value="Atualizar playlists"></input>
-							<input type="button" value="Resetar likes"></input>
-							<input type="button" value="Tocar extra" id="teste"></input>
+							<input id="bt-update" type="button" value="Atualizar playlists"></input>
+							<input id="bt-reset-likes" type="button" value="Resetar likes"></input>
 						</form>
+						<form action="#">
+							<input id="bt-teste1" type="button" value="Load Server"></input>
+							<input id="bt-teste2" type="button" value="Tocar extra"></input>
+						</form>
+						
 					</div>
 				</div>
 			</div>
