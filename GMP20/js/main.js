@@ -1,4 +1,4 @@
-global.$ = $;
+﻿global.$ = $;
 
 var gui = require('nw.gui');
 var win = gui.Window.get();
@@ -21,10 +21,7 @@ config.on('load-complete',function(){
 });
 
 
-mManager.on('load-list', function (){
-	console.log("mManager - load-list");
-	//sConnector.loadList();
-});
+
 sConnector.on('loadedlist',function( data ){ 
 	mManager.loadList( data );
 	console.log("Lista carregada com sucesso pelo sConnector e passada ao mManager");
@@ -32,8 +29,16 @@ sConnector.on('loadedlist',function( data ){
 mManager.on('loadmusic-start',function(music){ l.log('"'+music.name+'"',"carregando.");});
 mManager.on('loadlist-complete',function(music){ l.log('"'+music.name+'"',"carregada com sucesso.");});
 mManager.on('loadmusic-complete',function(music){ l.log('"'+music.name+'"',"carregada com sucesso.");});
-mManager.on('download-completed',function(data){ l.log("Todas as músicas da nova playlist já estão carregadas."); });
-
+mManager.on('download-completed',function(data){ 
+	l.log("Todas as músicas da nova playlist já estão carregadas."); 
+	mManager.makeUpdateAvaiable();
+});
+mManager.on('autoupdate',function(data){ 
+	mPlayer.play();
+});
+mManager.on('start',function(data){ 
+	mPlayer.play();
+});
 
 // TRAY
 var tray = new gui.Tray({ title: 'GRAVE PLAYER', icon: 'images/logo_16.png' });
@@ -79,8 +84,10 @@ $(function(){
 	mManager.on('next-music',function (){ var music = mManager.nextMusic(); mPlayer.nextMusic(music); });
 	//mPlayer.on('next-music',function (){ console.log("Evento no main"); });
 	
-	
-	mManager.localList( function(){ mPlayer.init();} );
+	mManager.updateLocalList( function(){ 
+		mPlayer.init();
+		mPlayer.play();
+	} );
 
 	/* VIEWS */
 
@@ -114,13 +121,18 @@ $(function(){
 		l.log("Lista de músicas atualizada.");
 	});
 
-	$('#playback_control > span').eq(0).click(function(){
+	$('#bt-update').click(function(){
+		mManager.updateLocalList();
+		l.log("Atualizou lista de músicas com as musicas do servidor");
+	});
+
+	$('#bt-play').click(function(){
 		mPlayer.play();
 	});
-	$('#playback_control > span').eq(1).click(function(){
+	$('#bt-forward').click(function(){
 		mPlayer.getNextMusic();
 	});
-	$('#teste').click(function(){
+	$('#bt-teste').click(function(){
 		console.log('teste');
 		mPlayer.playExtra('chamada.ogg');
 	});
