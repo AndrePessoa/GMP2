@@ -82,6 +82,7 @@ $(function(){
 	});
 	mPlayer.on('next-music',function (){ var music = mManager.nextMusic(); mPlayer.nextMusic(music); });
 	mManager.on('next-music',function (){ var music = mManager.nextMusic(); mPlayer.nextMusic(music); });
+	mManager.on('just-one',function (){ l.log( "Somente uma música da playlist atende aos requesitos. "); });
 	//mPlayer.on('next-music',function (){ console.log("Evento no main"); });
 	
 	mManager.updateLocalList( function(){ 
