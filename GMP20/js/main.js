@@ -31,6 +31,7 @@ mManager.on('loadlist-complete',function(music){ l.log('"'+music.name+'"',"carre
 mManager.on('loadmusic-complete',function(music){ l.log('"'+music.name+'"',"carregada com sucesso.");});
 mManager.on('download-completed',function(data){ 
 	l.log("Todas as músicas da nova playlist já estão carregadas."); 
+	toggleBotaoAtualizar( true );
 	mManager.makeUpdateAvaiable();
 });
 mManager.on('autoupdate',function(data){ 
@@ -72,7 +73,8 @@ $(function(){
 	
 	mPlayer = new mPlayer( document );
 	mPlayer.on('musicStart',function( channel, music ){ 
-		$('#list').val( music.name + '\n' + $('#list').val() ); 
+		//$('#list').val( music.name + '\n' + $('#list').val() ); 
+		adicionarMusicaTabela( music );
 		console.log('musicStart event on Main');
 	});
 	mPlayer.on('musicPlaying',function( pos, current, total ){ 
@@ -116,13 +118,14 @@ $(function(){
 		}
 	);
 
-	$('.commands input').eq(0).click(function(){
+	/*$('.commands input').eq(0).click(function(){
 		mManager.localList();
 		l.log("Lista de músicas atualizada.");
-	});
+	});*/
 
-	$('#bt-update').click(function(){
+	$('#bt-update').add("#play_screen form.commands button").click(function(){
 		mManager.updateLocalList();
+		toggleBotaoAtualizar(false);
 		l.log("Atualizou lista de músicas com as musicas do servidor");
 	});
 
@@ -147,6 +150,19 @@ $(function(){
 	rControl.on('log',function(data){ l.log(data); });
 	mPlayer.on('log',function(data){ l.log(data); });
 });
+
+function toggleBotaoAtualizar( forceShow ){
+	$("#play_screen form button").toggleClass( 'hide', !forceShow );
+}
+
+function adicionarMusicaTabela(music){
+	var linha = $('<tr></tr>');
+	linha.append($('<td></td>').text(music.name));
+	linha.append($('<td></td>').text(music.band || music.artist));
+	$('#list tbody').prepend( linha ); 
+	$('#list tbody tr').eq(6).remove();
+	console.log('musicStart event on Main');
+}
 
 function timeFormat(segs){
 	if( !_.isNumber(segs) ){ return ( "00:00" ); }

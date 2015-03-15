@@ -6,10 +6,10 @@
   "window": {
     "icon": "images/logo.png",
     "toolbar": false,
-    "frame": true,
+    "frame": false,
     "position": "center",
-    "width": 1050,
-    "height": 1000,
+    "width": 350,
+    "height": 375,
     "max_width": 350,
     "max_height": 375,
     "min_width": 350,

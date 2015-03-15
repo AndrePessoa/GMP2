@@ -35,6 +35,10 @@ textarea {
   background: #E0E0E0;
 }
 
+.hide{
+  visibility: hidden;
+  display: none;
+}
 
 /**/
 
@@ -92,8 +96,9 @@ textarea {
 
 #body .screen{
   float: left;
-  /*height: 255px;*/
+  max-height: 294px;
   width: 350px;
+  overflow: hidden;
 }
 
 /**/
@@ -139,6 +144,31 @@ div#likes i:hover {
   height: 5px;
   width: 100%;
   background: #A2A2B6;
+}
+
+#list {
+  height: 150px;
+  width: 330px;
+  margin: 0px;
+  -webkit-user-select: default;
+  border-radius: 0;
+  background: #E0E0E0;
+  color: black;
+  padding: 10px;
+}
+
+#list table{
+  width: 100%;
+}
+
+#list td {
+  width: 50%;
+  height: 27px;
+  font-size: 12px;
+}
+
+#list tr:first-child {
+  font-weight: bolder;
 }
 
 .scroll_content {

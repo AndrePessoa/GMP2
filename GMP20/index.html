@@ -38,8 +38,13 @@
 		<div id="body">
 			<div class="scroll_content">
 				<div id="play_screen" class="screen">
-					<textarea id="list" readonly="readonly"></textarea>
-					
+					<!--<textarea id="list" readonly="readonly"></textarea>-->
+					<div  id="list">
+						<table>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
 					<div class="controls">					
 						<div id="playback_control">				
 							<span><i id="bt-play" class="fa fa-play"></i></span>
@@ -59,6 +64,9 @@
 								<span class="total">0:00</span>
 							</div>
 						</div>
+						<form class="commands">
+							<input type="button" value="Atualizar listas" class="hide">
+						</form>
 					</div>
 				</div>
 				<div id="playlists_screen" class="screen">
