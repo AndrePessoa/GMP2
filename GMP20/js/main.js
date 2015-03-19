@@ -82,8 +82,7 @@ $(function(){
 		$('#playback_stream > div').last().find('span').eq(0).html( timeFormat(current) );
 		$('#playback_stream > div').last().find('span').eq(1).html( timeFormat(total) );
 	});
-	mPlayer.on('next-music',function (){ var music = mManager.nextMusic(); mPlayer.nextMusic(music); });
-	mManager.on('next-music',function (){ var music = mManager.nextMusic(); mPlayer.nextMusic(music); });
+	//mManager.on('next-music',function (){  mManager.nextMusic(mPlayer.nextMusic()) });
 	mManager.on('just-one',function (){ l.log( "Somente uma música da playlist atende aos requesitos. "); });
 	//mPlayer.on('next-music',function (){ console.log("Evento no main"); });
 	
@@ -134,7 +133,10 @@ $(function(){
 		mPlayer.play();
 	});
 	$('#bt-forward').click(function(){
-		mPlayer.getNextMusic();
+		function a(b){
+			mPlayer.nextMusic(b);
+		}
+		mManager.nextMusic(a);
 	});
 	$('#bt-teste').click(function(){
 		console.log('teste');
