@@ -31,7 +31,7 @@ $(function(){
                 elem.children().removeClass('selecionado');
                 $(this).addClass('selecionado');
                 self.sel = data;
-                elem.trigger( "mudou", {data:data} );
+                elem.trigger( "mudou", self.sel );
             });
 
             if( list.length == 1 ){ e.click(); }

@@ -80,27 +80,27 @@ $(function(){
 		$('#playback_stream > div').last().find('span').eq(0).html( timeFormat(current) );
 		$('#playback_stream > div').last().find('span').eq(1).html( timeFormat(total) );
 	});
-	//mManager.on('next-music',function (){  mManager.nextMusic(mPlayer.nextMusic()) });
+	mManager.on('ready-to-start',function (){  callNext(); });
 	mManager.on('just-one',function (){ l.log( "Somente uma música da playlist atende aos requesitos. "); });
-	//mPlayer.on('next-music',function (){ console.log("Evento no main"); });
+	mManager.on('new-playlists',function (arr_playlists){ 
+		for(i=0;i<arr_playlists.length;i++){
+			playlists.addItem($('<li><i class="fa fa-play"></i>'+arr_playlists[i].playlist+'</li>'), arr_playlists[i]);
+		}
+	});
 	
-	mManager.updateLocalList( function(){ 
-		mPlayer.init();
-		mPlayer.play();
-	} );
 
 	/* VIEWS */
 
 	var moods = $('#moods').cartesian({pin:"#moodLpin", animate: 0});
-	moods.on('change',function(e){console.log(e);});
+	moods.on('change',function(e){
+		mManager.setSelectedPoint(e);
+	});
 
 	var playlists = $("#playlists_screen ul").choiceList();
-	playlists.on('mudou',function(e){console.log(e);});	
-	playlists.addItem($('<li><i class="fa fa-play"></i>Lorem ipslom asdas qwq sxcxzada132asd asd ad</li>'), 1);
-	playlists.addItem($('<li><i class="fa fa-play"></i>Lorem ipslom asdas qwq sxcxzada132asd asd ad</li>'), 2);
-	playlists.addItem($('<li><i class="fa fa-play"></i>Lorem ipslom asdas qwq sxcxzada132asd asd ad</li>'), 3);
-	playlists.addItem($('<li><i class="fa fa-play"></i>Lorem ipslom asdas qwq sxcxzada132asd asd ad</li>'), 4);
-
+	playlists.on('mudou', function( e, playlist ){
+		mManager.setSelectedPlaylist(playlist);
+	});	
+	
 	var configForm = $('#config_screen form').eoForm();
 	//configForm.load( config.player );
 	configForm.submit(
@@ -131,10 +131,7 @@ $(function(){
 		mPlayer.play();
 	});
 	$('#bt-forward').click(function(){
-		function a(b){
-			mPlayer.nextMusic(b);
-		}
-		mManager.nextMusic(a);
+		callNext();
 	});
 	$('#bt-teste').click(function(){
 		console.log('teste');
@@ -172,4 +169,11 @@ function timeFormat(segs){
 	mins = ( mins < 10 )? "0" + mins : mins ;
 	segs = ( segs < 10 )? "0" + segs : segs ;
 	return ( mins + ":" + segs );
+}
+
+function callNext(){
+	function a(b){
+		mPlayer.nextMusic(b);
+	}
+	mManager.nextMusic(a);
 }
