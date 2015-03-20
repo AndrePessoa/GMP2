@@ -26,13 +26,13 @@ body {
 
 textarea {
   height: 150px;
-  width: 350px;
+  width: 450px;
   padding: 10px 15px;
   line-height: 20px;
   margin: 0px;
   -webkit-user-select: default;
   border-radius: 0;
-  background: #E0E0E0;
+  background: #25bec1;
 }
 
 .hide{
@@ -97,7 +97,7 @@ textarea {
 #body .screen{
   float: left;
   max-height: 294px;
-  width: 350px;
+  width: 450px;
   overflow: hidden;
 }
 
@@ -106,6 +106,8 @@ textarea {
 div#likes {
   text-align: right;
   letter-spacing: 5px;
+  margin: 32px 20px 0 0;
+  float: right;
 }
 
 div#likes span{
@@ -123,6 +125,10 @@ div#likes span{
   padding: 16px 20px 10px 0;
 }
 
+#playback_control i#bt-forward {
+  font-size: 25px;
+}
+
 #playback_control i:hover,
 div#likes i:hover {
   color: #A2A2B6;
@@ -130,31 +136,31 @@ div#likes i:hover {
 
 #playback_stream{
   float: right;
-  margin: 12px 20px 20px 0;
+  margin: 28px 25px 0px 0;
 }
 
 #stream {
-  width: 200px;
+  width: 225px;
   height: 5px;
-  background: #D1D1D1;
-  margin: 10px 0;
+  background: #A2A2B6;
+  margin: 10px 0 6px;
 }
 
 #stream div{
   height: 5px;
   width: 100%;
-  background: #A2A2B6;
+  background: #a976b4;
 }
 
 #list {
-  height: 150px;
-  width: 330px;
+  height: 133px;
+  width: 430px;
   margin: 0px;
   -webkit-user-select: default;
   border-radius: 0;
-  background: #E0E0E0;
+  background: #25bec1;
   color: black;
-  padding: 10px;
+  padding: 20px 40px;
 }
 
 #list table{
@@ -164,15 +170,21 @@ div#likes i:hover {
 #list td {
   width: 50%;
   height: 27px;
-  font-size: 12px;
+  font-size: 15px;
 }
 
 #list tr:first-child {
-  font-weight: bolder;
+  /*font-weight: bolder;*/
+  color: white;
 }
 
 .scroll_content {
   width: 500%;
+}
+
+#times{
+  color: #a976b4;
+  font-size: 12px;
 }
 
 #times .total{
@@ -187,7 +199,7 @@ div#likes i:hover {
 }
 
 #playlists_screen li.selecionado { 
-  background: #A2A2B6;
+  background: #a976b4;
 }
 
 #playlists_screen #moods {
@@ -217,12 +229,12 @@ div#likes i:hover {
 }
 
 #playlists_screen #moods:hover  #moodLpin {  background: black }
-/*#playlists_screen #moods:active #moodLpin {  background: #E0E0E0; }*/
+/*#playlists_screen #moods:active #moodLpin {  background: #25bec1; }*/
 
 
 #playlists_screen li {
   height: 23px;
-  background: #E0E0E0;
+  background: #25bec1;
   line-height: 23px;
   border-bottom: 1px solid rgb(186, 186, 186);
   padding: 4px 15px;

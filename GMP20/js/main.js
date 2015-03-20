@@ -14,14 +14,6 @@ var server_list;
 
 var l = require('logger'); // logger
 
-
-config.on('load-complete',function(){ 
-	l.log("Config carregado com sucesso"); 
-	$('h1').text(config.player.client);
-});
-
-
-
 sConnector.on('loadedlist',function( data ){ 
 	mManager.loadList( data );
 	console.log("Lista carregada com sucesso pelo sConnector e passada ao mManager");
@@ -58,6 +50,11 @@ rControl.on('nothing',function(){  /*/console.log('no orders');/*/ });
 
 
 
+config.on('loadcomplete',function(){ 
+	l.log("Config carregado com sucesso"); 
+	$('h1').text(config.player.client);
+});
+
 config.init();
 sConnector.init(config.player, config.server);
 sConnector.loadList();
@@ -67,7 +64,8 @@ rControl.init(config.player, config.server, 50000);
 
 
 $(function(){
-	l.log( "Player verão", config.version);
+	l.log( "Player versão", config.version);
+	if(config.status=='loaded')$('h1').text(config.player.client);
 	l.init();	
 	l.on('update',function(log){ $('#console').val(l.render()+$('#console').val()); });	
 	
@@ -104,7 +102,7 @@ $(function(){
 	playlists.addItem($('<li><i class="fa fa-play"></i>Lorem ipslom asdas qwq sxcxzada132asd asd ad</li>'), 4);
 
 	var configForm = $('#config_screen form').eoForm();
-	configForm.load( config.player );
+	//configForm.load( config.player );
 	configForm.submit(
 		function(){ 
 			//console.log();
@@ -163,7 +161,7 @@ function adicionarMusicaTabela(music){
 	linha.append($('<td></td>').text(music.name));
 	linha.append($('<td></td>').text(music.band || music.artist));
 	$('#list tbody').prepend( linha ); 
-	$('#list tbody tr').eq(6).remove();
+	$('#list tbody tr').eq(5).remove();
 	console.log('musicStart event on Main');
 }
 
