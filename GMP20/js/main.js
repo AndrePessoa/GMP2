@@ -75,6 +75,11 @@ $(function(){
 		adicionarMusicaTabela( music );
 		console.log('musicStart event on Main');
 	});
+	mPlayer.on('next-music',function( channel, music ){
+		callNext();
+		console.log('chamou outra musica');
+	});
+	
 	mPlayer.on('musicPlaying',function( pos, current, total ){ 
 		$('#stream div').css('width', Math.round( pos * 100 ) + "%" );
 		$('#playback_stream > div').last().find('span').eq(0).html( timeFormat(current) );
@@ -134,8 +139,7 @@ $(function(){
 		callNext();
 	});
 	$('#bt-teste').click(function(){
-		console.log('teste');
-		mPlayer.playExtra('chamada.ogg');
+		mManager.playSpecial('chamada.ogg');
 	});
 
 	$('#screens_control li').each(function(i){
