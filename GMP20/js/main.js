@@ -32,6 +32,10 @@ mManager.on('autoupdate',function(data){
 mManager.on('start',function(data){ 
 	mPlayer.play();
 });
+mManager.on('play-chamada', function(data){ 
+	console.log(data);
+	mPlayer.playChamada(data);
+});
 
 // TRAY
 var tray = new gui.Tray({ title: 'GRAVE PLAYER', icon: 'images/logo_16.png' });
@@ -73,7 +77,6 @@ $(function(){
 	mPlayer.on('musicStart',function( channel, music ){ 
 		//$('#list').val( music.name + '\n' + $('#list').val() ); 
 		adicionarMusicaTabela( music );
-		console.log('musicStart event on Main');
 	});
 	mPlayer.on('next-music',function( channel, music ){
 		callNext();
