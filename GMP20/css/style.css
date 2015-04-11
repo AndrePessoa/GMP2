@@ -49,8 +49,8 @@ textarea {
 }
 
 #top #logo {
-  height: 45px;
-  margin: 15px;
+  height: 55px;
+  margin: 10px;
   float: left;
 }
 
@@ -262,19 +262,26 @@ div#likes i:hover {
   padding: 15px;
 }
 
-.commands input{
-  margin-bottom: 10px;
+.commands input,
+.commands .btn{
+margin-bottom: 10px;
   padding: 5px 15px;
   border: 1px solid;
   background: none;
-  color: white;  
+  color: white;
   width: 49%;
+  font: normal normal normal 13.3333330154419px/normal Arial;
+  text-align: center;
+  display: inline-block;
 
   cursor: pointer;
+  -webkit-box-sizing: border-box;
 }
 
 .commands input:hover,
-.commands input:focus{
+.commands input:focus,
+.commands .btn:hover,
+.commands .btn:focus{
   margin-bottom: 10px;
   padding: 5px 15px;
   background: black;
@@ -282,12 +289,17 @@ div#likes i:hover {
   border: 1px solid #A2A2B6;
 }
 
-.commands input:active{
+.commands input:active,
+.commands .btn:active{
   margin-bottom: 10px;
   padding: 5px 15px;
   background: white;
   color: black;
   border: 1px solid white;
+}
+
+.commands input[ type=file ]{
+  display: none;
 }
 
 label {

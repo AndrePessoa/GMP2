@@ -21,7 +21,7 @@
 		<audio id="audio3"></audio>
 		<div id="top">
 			<div>
-				<img id="logo" src="images/logo.svg" />
+				<img id="logo" src="images/logo.svg"  style="-webkit-app-region: drag"/>
 				<hgroup style="-webkit-app-region: drag">
 					<h1>Seu nome aqui</h1>
 					<h2>Grave Media Player</h2>
@@ -107,6 +107,10 @@
 						<form action="#">
 							<input id="bt-update" type="button" value="atualizar playlists"></input>
 							<input id="bt-reset-likes" type="button" value="resetar likes"></input>
+							<div class="btn" id="bt-local-playlist" data-target="input-local-playlist">
+								importar pen-drive / cd
+							</div>
+							<input id="input-local-playlist" type="file" value=""  accept=".playlist"></input>
 						</form>
 						<form action="#">
 							<input id="bt-teste1" type="button" value="load Server"></input>
