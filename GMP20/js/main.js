@@ -14,8 +14,8 @@ var server_list;
 
 var l = require('logger'); // logger
 
-sConnector.on('loadedlist',function( data ){ 
-	mManager.loadList( data );
+sConnector.on('loadedlist',function( data, dir ){ 
+	mManager.loadList( data, dir );
 	console.log("Lista carregada com sucesso pelo sConnector e passada ao mManager");
 });
 mManager.on('loadmusic-start',function(music){ l.log('"'+music.name+'"',"carregando.");});
@@ -127,7 +127,7 @@ $(function(){
 	});	
 	
 	var configForm = $('#config_screen form').eoForm();
-	//configForm.load( config.player );
+	configForm.load( config.player );
 	configForm.submit(
 		function(){ 
 			//console.log();
@@ -146,6 +146,11 @@ $(function(){
 	$('#bt-update').add("#play_screen form.commands button").click(function(){
 		mManager.updateLocalList();
 		l.log("Atualizou lista de músicas com as musicas do servidor");
+	});
+
+	$('#bt-local-playlist').click(function(){ $('#input-local-playlist').click(); return false; });
+	$('#input-local-playlist').change(function(){
+		sConnector.loadList('local',$(this).val());
 	});
 
 	$('#bt-play').click(function(){

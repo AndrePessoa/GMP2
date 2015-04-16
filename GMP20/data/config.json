@@ -2,7 +2,7 @@
 	"_events": {},
 	"version": "0.1",
 	"player": {
-		"client": "Teste Misto 2",
+		"client": "Teste Misto 3",
 		"name": "teste-3",
 		"password": "asd"
 	},
@@ -11,5 +11,6 @@
 		"hostname": "projetos.entreoutros.com",
 		"port": 443,
 		"path": "/gmp20"
-	}
+	},
+	"status": "loaded"
 }
