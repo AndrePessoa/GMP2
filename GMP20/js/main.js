@@ -21,10 +21,9 @@ sConnector.on('loadedlist',function( data ){
 mManager.on('loadmusic-start',function(music){ l.log('"'+music.name+'"',"carregando.");});
 mManager.on('loadlist-complete',function(music){ l.log('"'+music.name+'"',"carregada com sucesso.");});
 mManager.on('loadmusic-complete',function(music){ l.log('"'+music.name+'"',"carregada com sucesso.");});
-mManager.on('download-completed',function(data){ 
+mManager.on('download-completed',function( ){ 
 	l.log("Todas as músicas da nova playlist já estão carregadas."); 
 	toggleBotaoAtualizar( true );
-	mManager.makeUpdateAvaiable();
 });
 mManager.on('autoupdate',function(data){ 
 	mPlayer.play();
@@ -60,8 +59,14 @@ config.on('loadcomplete',function(){
 });
 
 config.init();
+
 sConnector.init(config.player, config.server);
+
 sConnector.loadList();
+setInterval(function(){
+		console.log("loadList segunda vez");
+		sConnector.loadList();
+	}, 10000);
 mManager.init( config.player, config.server, openDatabase('mydb', '1.0', 'my first database', 2 * 1024 * 1024) );
 rControl.init(config.player, config.server, 50000);
 
@@ -74,12 +79,13 @@ $(function(){
 	l.on('update',function(log){ $('#console').val(l.render()+$('#console').val()); });	
 	
 	mPlayer = new mPlayer( document );
+	mPlayer.init();
 	mPlayer.on('musicStart',function( channel, music ){ 
 		//$('#list').val( music.name + '\n' + $('#list').val() ); 
 		adicionarMusicaTabela( music );
 	});
 	mPlayer.on('next-music',function( channel, music ){
-		callNext();
+		callNext( true );
 		console.log('chamou outra musica');
 	});
 	
@@ -88,12 +94,23 @@ $(function(){
 		$('#playback_stream > div').last().find('span').eq(0).html( timeFormat(current) );
 		$('#playback_stream > div').last().find('span').eq(1).html( timeFormat(total) );
 	});
-	mManager.on('ready-to-start',function (){  callNext(); });
+	mManager.on('ready-to-start',function (){  
+		if(mPlayer.getStatus()=="stopped"){ // testa se está tocando
+			callNext( true );
+			toggleBotaoAtualizar( false );
+		}
+	});
+	mManager.on('update-avaiable',function (){  
+		toggleBotaoAtualizar( true );
+	});
 	mManager.on('just-one',function (){ l.log( "Somente uma música da playlist atende aos requesitos. "); });
 	mManager.on('new-playlists',function (arr_playlists){ 
+		playlists.html("");
 		for(i=0;i<arr_playlists.length;i++){
 			playlists.addItem($('<li><i class="fa fa-play"></i>'+arr_playlists[i].playlist+'</li>'), arr_playlists[i]);
 		}
+		
+		toggleBotaoAtualizar( false );
 	});
 	
 
@@ -124,14 +141,10 @@ $(function(){
 		}
 	);
 
-	/*$('.commands input').eq(0).click(function(){
-		mManager.localList();
-		l.log("Lista de músicas atualizada.");
-	});*/
+
 
 	$('#bt-update').add("#play_screen form.commands button").click(function(){
 		mManager.updateLocalList();
-		toggleBotaoAtualizar(false);
 		l.log("Atualizou lista de músicas com as musicas do servidor");
 	});
 
@@ -139,7 +152,7 @@ $(function(){
 		mPlayer.play();
 	});
 	$('#bt-forward').click(function(){
-		callNext();
+		callNext( false );
 	});
 	$('#bt-teste').click(function(){
 		mManager.playSpecial('chamada.ogg');
@@ -157,7 +170,8 @@ $(function(){
 });
 
 function toggleBotaoAtualizar( forceShow ){
-	$("#play_screen form button").toggleClass( 'hide', !forceShow );
+	console.log("BOTÃO UPDATE AVAIABLE"+forceShow+ $("#update_avaiable").html());
+	$("#update_avaiable").css("display", ((forceShow)? 'block': 'none') );
 }
 
 function adicionarMusicaTabela(music){
@@ -178,9 +192,9 @@ function timeFormat(segs){
 	return ( mins + ":" + segs );
 }
 
-function callNext(){
+function callNext( natural ){
 	function a(b){
 		mPlayer.nextMusic(b);
 	}
-	mManager.nextMusic(a);
+	mManager.nextMusic(a , natural);
 }

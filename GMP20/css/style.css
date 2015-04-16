@@ -300,3 +300,12 @@ label {
 label input{
   float: right;
 }
+
+.update_avaiable {
+	width: 100%;
+	clear: both;
+	padding: 20px;
+	text-align: center;
+	box-sizing: border-box;
+	display:none;
+}
