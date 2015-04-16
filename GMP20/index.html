@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="js/underscore-min.js"></script>	
 		<script type="text/javascript" src="js/main.js"></script>	
 	</head>
-	<body >
+	<body  style="background-color:rgba(0,0,0,0);">
 		<audio id="audio1" autorun="true"></audio>
 		<audio id="audio2"></audio>
 		<audio id="audio3"></audio>
@@ -23,8 +23,8 @@
 			<div>
 				<img id="logo" src="images/logo.svg"  style="-webkit-app-region: drag"/>
 				<hgroup style="-webkit-app-region: drag">
-					<h1>Seu nome aqui</h1>
-					<h2>Grave Media Player</h2>
+					<h1>Media Player</h1>
+					<h2>Seu nome aqui</h2>
 				</hgroup>
 				<div id="screens_control">
 					<ul>						
@@ -79,25 +79,29 @@
 				<div id="config_screen" class="screen">
 					<div class="commands">
 						<form action="#">
+							<fieldset>
+								<label>
+									Cliente
+									<input type="text" value="" name='client'></input>
+								</label>
+								<label>
+									Player login
+									<input type="text" value="" name='name'></input>
+								</label>
+								<label>
+									Senha
+									<input type="text" value="" name='password'></input>
+								</label>
+								<label>
+									<input type="submit" value="salvar"></input>
+								</label>
+							</fieldset>
 							<label>
-								Cliente
-								<input type="text" value="" name='client'></input>
-							</label>
-							<label>
-								Player login
-								<input type="text" value="" name='name'></input>
-							</label>
-							<label>
-								Senha
-								<input type="text" value="" name='password'></input>
-							</label>
-							<div>
-								<input type="submit" value="salvar"></input>
-							</div>
-							<div>
 								<input type="button" value="atualizar playlists"></input>
+							</label>
+							<label>
 								<input type="button" value="manutenção" name="irDebbug"></input>
-							</div>
+							</label>
 						</form>
 					</div>
 				</div>				

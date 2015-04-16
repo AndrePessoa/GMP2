@@ -56,7 +56,7 @@ rControl.on('nothing',function(){  /*/console.log('no orders');/*/ });
 
 config.on('loadcomplete',function(){ 
 	l.log("Config carregado com sucesso"); 
-	$('h1').text(config.player.client);
+	$('h2').text(config.player.client);
 });
 
 config.init();
@@ -69,7 +69,7 @@ rControl.init(config.player, config.server, 50000);
 
 $(function(){
 	l.log( "Player versão", config.version);
-	if(config.status=='loaded')$('h1').text(config.player.client);
+	if(config.status=='loaded')$('h2').text(config.player.client);
 	l.init();	
 	l.on('update',function(log){ $('#console').val(l.render()+$('#console').val()); });	
 	
