@@ -55,7 +55,7 @@ rControl.on('nothing',function(){  /*/console.log('no orders');/*/ });
 
 config.on('loadcomplete',function(){ 
 	l.log("Config carregado com sucesso"); 
-	$('h1').text(config.player.client);
+	$('h2').text(config.player.client);
 });
 
 config.init();
@@ -74,7 +74,7 @@ rControl.init(config.player, config.server, 50000);
 
 $(function(){
 	l.log( "Player versão", config.version);
-	if(config.status=='loaded')$('h1').text(config.player.client);
+	if(config.status=='loaded')$('h2').text(config.player.client);
 	l.init();	
 	l.on('update',function(log){ $('#console').val(l.render()+$('#console').val()); });	
 	
@@ -175,9 +175,12 @@ $(function(){
 });
 
 function toggleBotaoAtualizar( forceShow ){
-	console.log("BOTÃO UPDATE AVAIABLE"+forceShow+ $("#update_avaiable").html());
-	$("#update_avaiable").css("display", ((forceShow)? 'block': 'none') );
+	console.log("BOTÃO UPDATE AVAIABLE"+forceShow+ $("#msg_to_client").html());
+	$("#msg_to_client").html("Existe uma atualização disponível.")
+	$("#msg_to_client").css("display", ((forceShow)? 'block': 'none') );
 }
+
+
 
 function adicionarMusicaTabela(music){
 	var linha = $('<tr></tr>');

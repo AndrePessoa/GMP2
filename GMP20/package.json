@@ -8,11 +8,10 @@
     "toolbar": false,
     "frame": false,
     "position": "center",
-    "width": 2100,
+    "transparent": true,
+    "width": 450,
     "height": 375,
-    "max_width": 2100,
-    "max_height": 375,
-    "min_width": 2100,
-    "min_height": 375
+    "max_width": 450,
+    "max_height": 375
   }
 }

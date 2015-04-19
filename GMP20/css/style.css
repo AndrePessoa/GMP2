@@ -1,82 +1,93 @@
 @font-face {
-  font-family: 'OpenSans';
-  src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
-  font-style: normal;
-  font-weight: 400;
+	font-family: 'OpenSans';
+	src: url('../fonts/OpenSans-Regular.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 400;
 }
 
-html, body, section{	
-/*	height: 100%;
+html, body, section{  
+/*  height: 100%;
 	width: 100%;*/
 	margin: 0;
 	padding: 0;
-  color: white;
+	color: white;
 }
 
 * {
-  font-family: 'OpenSans', sans-serif;
-  -webkit-user-select: none;
-  -webkit-transition: all 0.3s;
+	font-family: 'OpenSans', sans-serif;
+	-webkit-user-select: none;
+	-webkit-transition: all 0.3s;
 }
 
 body {
-  background: black;
-  border: 1px solid #0F0F0F;
+	background: black;
+	/* border: 1px solid #0F0F0F; */
+	/* border-radius: 15px; */
+	/* display: block; */
+	/* overflow: hidden; */
 }
 
 textarea {
-  height: 150px;
-  width: 450px;
-  padding: 10px 15px;
-  line-height: 20px;
-  margin: 0px;
-  -webkit-user-select: default;
-  border-radius: 0;
-  background: #25bec1;
+	height: 150px;
+	width: 450px;
+	padding: 10px 15px;
+	line-height: 20px;
+	margin: 0px;
+	-webkit-user-select: default;
+	border-radius: 0;
+	background: #25bec1;
 }
 
 .hide{
-  visibility: hidden;
-  display: none;
+	visibility: hidden;
+	display: none;
 }
 
 /**/
 
 #top {
-  clear: both;
-  width: 100%;
-  display: table;
+	clear: both;
+	width: 100%;
+	display: table;
+	border-radius: 40px 10px 0 0;
+	background: black;
 }
 
 #top #logo {
-  height: 55px;
-  margin: 10px;
-  float: left;
+	height: 55px;
+	margin: 10px;
+	float: left;
+}
+
+#top h1, #top h2, #top h3 {
+  font-size: 22px;
+  font-weight: normal;
+  line-height: 1.2em;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: initial;
+  margin-top: 8px;
 }
 
 #top h1{
-  font-size: 19px;
-  font-weight: normal;
-  line-height: 1.2em;
-
-  position: pointer;
+	border-right: 1px solid;
+  padding-right: 10px;
+  font-size: 1em;
 }
 
-#top h2, #top h3{
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 1.2em;
+#top h2{
+	padding-left: 10px;
 }
 
 #top hgroup{
-  margin: 15px 0;
-  float: left;
+	margin: 15px 0;
+	float: left;
 }
 
 #top #screens_control {
-  position: absolute;
-  right: 14px;
-  top: 12px;
+	position: absolute;
+	right: 14px;
+	top: 12px;
 }
 
 #top #screens_control ul{  list-style: none; }
@@ -90,142 +101,144 @@ textarea {
 /**/
 
 #body{  
-  overflow-x: hidden;
-  height: 298px;
+	overflow-x: hidden;
+	height: 298px;
+	background: black;
+	border-radius: 0 0 35px 15px;
 }
 
 #body .screen{
-  float: left;
-  max-height: 294px;
-  width: 450px;
-  overflow: hidden;
+	float: left;
+	max-height: 294px;
+	width: 450px;
+	overflow: hidden;
 }
 
 /**/
 
 div#likes {
-  text-align: right;
-  letter-spacing: 5px;
-  margin: 32px 20px 0 0;
-  float: right;
+	text-align: right;
+	letter-spacing: 5px;
+	margin: 32px 20px 0 0;
+	float: right;
 }
 
 div#likes span{
-  cursor: pointer;
+	cursor: pointer;
 }
 
 #playback_control{
-  float: left;
-  margin: 10px 0 0 30px;
+	float: left;
+	margin: 10px 0 0 30px;
 }
 
 #playback_control i {
-  cursor: pointer;
-  font-size: 32px;
-  padding: 16px 20px 10px 0;
+	cursor: pointer;
+	font-size: 32px;
+	padding: 16px 20px 10px 0;
 }
 
 #playback_control i#bt-forward {
-  font-size: 25px;
+	font-size: 25px;
 }
 
 #playback_control i:hover,
 div#likes i:hover {
-  color: #A2A2B6;
+	color: #A2A2B6;
 }
 
 #playback_stream{
-  float: right;
-  margin: 28px 25px 0px 0;
+	float: right;
+	margin: 28px 25px 0px 0;
 }
 
 #stream {
-  width: 225px;
-  height: 5px;
-  background: #A2A2B6;
-  margin: 10px 0 6px;
+	width: 225px;
+	height: 5px;
+	background: #A2A2B6;
+	margin: 10px 0 6px;
 }
 
 #stream div{
-  height: 5px;
-  width: 100%;
-  background: #a976b4;
+	height: 5px;
+	width: 100%;
+	background: #a976b4;
 }
 
 #list {
-  height: 133px;
-  width: 430px;
-  margin: 0px;
-  -webkit-user-select: default;
-  border-radius: 0;
-  background: #25bec1;
-  color: black;
-  padding: 20px 40px;
+	height: 133px;
+	width: 430px;
+	margin: 0px;
+	-webkit-user-select: default;
+	border-radius: 0;
+	background: #25bec1;
+	color: black;
+	padding: 20px 40px;
 }
 
 #list table{
-  width: 100%;
+	width: 100%;
 }
 
 #list td {
-  width: 50%;
-  height: 27px;
-  font-size: 15px;
+	width: 50%;
+	height: 27px;
+	font-size: 15px;
 }
 
 #list tr:first-child {
-  /*font-weight: bolder;*/
-  color: white;
+	/*font-weight: bolder;*/
+	color: white;
 }
 
 .scroll_content {
-  width: 500%;
+	width: 500%;
 }
 
 #times{
-  color: #a976b4;
-  font-size: 12px;
+	color: #a976b4;
+	font-size: 12px;
 }
 
 #times .total{
-  float: right;
+	float: right;
 }
 
 /**/
 
 #playlists_screen li i {
-  margin-right: 5px;
-  display: none;
+	margin-right: 5px;
+	display: none;
 }
 
 #playlists_screen li.selecionado { 
-  background: #a976b4;
+	background: #a976b4;
 }
 
 #playlists_screen #moods {
-  display: block;
-  margin: 0 25px 25px;
-  border: 1px solid white;
-  background: black;
-  height: 100px;
-  overflow: hidden;
-  position: relative;
+	display: block;
+	margin: 0 25px 25px;
+	border: 1px solid white;
+	background: black;
+	height: 100px;
+	overflow: hidden;
+	position: relative;
 
-  cursor: pointer;
+	cursor: pointer;
 }
 
 #playlists_screen #moods:hover {  background: #A2A2B6; }
 /*#playlists_screen #moods:active {  background: white; }*/
 #playlists_screen #moods #moodLpin {
-  /*border: 1px solid;*/
-  border-radius: 10px;
-  background: white;
-  width: 10px;
-  height: 10px;
-  margin: -5px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
+	/*border: 1px solid;*/
+	border-radius: 10px;
+	background: white;
+	width: 10px;
+	height: 10px;
+	margin: -5px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
 }
 
 #playlists_screen #moods:hover  #moodLpin {  background: black }
@@ -233,83 +246,101 @@ div#likes i:hover {
 
 
 #playlists_screen li {
-  height: 23px;
-  background: #25bec1;
-  line-height: 23px;
-  border-bottom: 1px solid rgb(186, 186, 186);
-  padding: 4px 15px;
-  overflow: hidden;
-  display: block;
-  color: black;
-  font-size: 13px;
+	height: 23px;
+	background: #25bec1;
+	line-height: 23px;
+	border-bottom: 1px solid rgb(186, 186, 186);
+	padding: 4px 15px;
+	overflow: hidden;
+	display: block;
+	color: black;
+	font-size: 13px;
 
-  cursor: pointer;
+	cursor: pointer;
 }
 
 #playlists_screen li:hover {
-  background: #A2A2B6;
+	background: #A2A2B6;
 }
 
 /**/
 
 #config_screen input[type=text]{
-  width: 65%;
+	width: 65%;
 }
 
 /**/
 
 .commands{
-  padding: 15px;
+	padding: 15px;
 }
 
 .commands input,
 .commands .btn{
 margin-bottom: 10px;
-  padding: 5px 15px;
-  border: 1px solid;
-  background: none;
-  color: white;
-  width: 49%;
-  font: normal normal normal 13.3333330154419px/normal Arial;
-  text-align: center;
-  display: inline-block;
+	padding: 5px 15px;
+	border: 1px solid;
+	background: none;
+	color: white;
+	width: 49%;
+	font: normal normal normal 13.3333330154419px/normal Arial;
+	text-align: center;
+	display: inline-block;
 
-  cursor: pointer;
-  -webkit-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
 }
 
 .commands input:hover,
 .commands input:focus,
 .commands .btn:hover,
 .commands .btn:focus{
-  margin-bottom: 10px;
-  padding: 5px 15px;
-  background: black;
-  color: #A2A2B6;
-  border: 1px solid #A2A2B6;
+	margin-bottom: 10px;
+	padding: 5px 15px;
+	background: black;
+	color: #A2A2B6;
+	border: 1px solid #A2A2B6;
+}
+
+.commands input[type=button],
+.commands input[type=submit],
+.commands .btn{
+	cursor: pointer;
+}
+
+.commands input[type=button]:hover,
+.commands input[type=submit]:hover,
+.commands .btn:hover {
+	background: white;
+	color: black;
 }
 
 .commands input:active,
 .commands .btn:active{
-  margin-bottom: 10px;
-  padding: 5px 15px;
-  background: white;
-  color: black;
-  border: 1px solid white;
+	margin-bottom: 10px;
+	padding: 5px 15px;
+	background: white;
+	color: black;
+	border: 1px solid white;
 }
 
 .commands input[ type=file ]{
-  display: none;
+	display: none;
 }
 
+fieldset {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
 label {
-  width: 100%;
-  display: block;
-  clear: both;
-  font-size: 14px;
+	width: 100%;
+	display: block;
+	clear: both;
+	font-size: 14px;
 }
 
 label input{
+<<<<<<< HEAD
   float: right;
 }
 
@@ -320,4 +351,7 @@ label input{
 	text-align: center;
 	box-sizing: border-box;
 	display:none;
+=======
+	float: right;
+>>>>>>> b0bb1cbd916e55b79539f2feaa3db02499ab02b7
 }
