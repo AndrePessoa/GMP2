@@ -351,14 +351,6 @@ label input{
   float: right;
 }
 
-.update_avaiable {
-	width: 100%;
-	clear: both;
-	padding: 20px;
-	text-align: center;
-	box-sizing: border-box;
-	display:none;
-=======
-	float: right;
->>>>>>> b0bb1cbd916e55b79539f2feaa3db02499ab02b7
+#bt-update {
+	margin-top:10px;
 }
