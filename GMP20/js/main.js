@@ -11,7 +11,7 @@ var mPlayer = require('musicPlayer');
 var rControl = require('remoteControl');
 var sConnector = require('serverConnector');
 var server_list;
-
+var msg_history = [];
 var l = require('logger'); // logger
 
 sConnector.on('loadedlist',function( data, dir ){ 
@@ -175,10 +175,14 @@ $(function(){
 });
 
 function toggleBotaoAtualizar( forceShow ){
-	console.log("BOTÃO UPDATE AVAIABLE"+forceShow+ $("#msg_to_client").html());
-	$("#msg_to_client").html("Existe uma atualização disponível.")
-	$("#msg_to_client").css("display", ((forceShow)? 'block': 'none') );
+	console.log("FORCE SHOW "+forceShow);
+	if (forceShow){
+		$("#bt-update").css("visibility", "visible")
+	} else {
+		$("#bt-update").css("visibility", "hidden")
+	}
 }
+
 
 
 
