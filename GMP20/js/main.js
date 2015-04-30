@@ -176,8 +176,8 @@ $(function(){
 
 function toggleBotaoAtualizar( forceShow ){
 	console.log("BOTÃO UPDATE AVAIABLE"+forceShow+ $("#msg_to_client").html());
-	$("#msg_to_client").html("Existe uma atualização disponível.")
-	$("#msg_to_client").css("display", ((forceShow)? 'block': 'none') );
+	//$("#msg_to_client").html("Existe uma atualização disponível.")
+	$(".msg_to_client").toogleClass("hide", (forceShow));
 }
 
 

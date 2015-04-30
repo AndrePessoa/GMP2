@@ -60,19 +60,19 @@ textarea {
 }
 
 #top h1, #top h2, #top h3 {
-  font-size: 22px;
-  font-weight: normal;
-  line-height: 1.2em;
-  cursor: pointer;
-  display: inline-block;
-  font-weight: initial;
-  margin-top: 8px;
+	font-size: 22px;
+	font-weight: normal;
+	line-height: 1.2em;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: initial;
+	margin-top: 8px;
 }
 
 #top h1{
 	border-right: 1px solid;
-  padding-right: 10px;
-  font-size: 1em;
+	padding-right: 10px;
+	font-size: 1em;
 }
 
 #top h2{
@@ -104,7 +104,7 @@ textarea {
 	overflow-x: hidden;
 	height: 298px;
 	background: black;
-	border-radius: 0 0 35px 15px;
+	border-radius: 0 0 15px 15px;
 }
 
 #body .screen{
@@ -267,6 +267,7 @@ div#likes i:hover {
 
 #config_screen input[type=text]{
 	width: 65%;
+	float: right;
 }
 
 /**/
@@ -325,6 +326,12 @@ margin-bottom: 10px;
 
 .commands input[ type=file ]{
 	display: none;
+}
+
+.commands input.msg_to_client {
+	width: 110%;
+	border: 1px solid #2D2D2D;
+	margin: 9px -5%;
 }
 
 fieldset {
