@@ -16,7 +16,7 @@ var l = require('logger'); // logger
 
 sConnector.on('loadedlist',function( data, dir ){ 
 	mManager.loadList( data, dir );
-	console.log("Lista carregada com sucesso pelo sConnector e passada ao mManager");
+	console.log("Lista carregada com sucesso /pelo sConnector e passada ao mManager");
 });
 mManager.on('loadmusic-start',function(music){ l.log('"'+music.name+'"',"carregando.");});
 mManager.on('loadlist-complete',function(music){ l.log('"'+music.name+'"',"carregada com sucesso.");});
@@ -66,9 +66,9 @@ sConnector.loadList();
 setInterval(function(){
 		console.log("loadList segunda vez");
 		sConnector.loadList();
-	}, 10000);
+	}, 30000);
 mManager.init( config.player, config.server, openDatabase('mydb', '1.0', 'my first database', 2 * 1024 * 1024) );
-rControl.init(config.player, config.server, 50000);
+rControl.init( config.player, config.server, 50000);
 
 
 
@@ -82,13 +82,12 @@ $(function(){
 	mPlayer.init();
 	mPlayer.on('musicStart',function( channel, music ){ 
 		//$('#list').val( music.name + '\n' + $('#list').val() ); 
-		adicionarMusicaTabela( music );
+		if( music.type !== "spots" && music.type !== "chamada" ) adicionarMusicaTabela( music );
 	});
 	mPlayer.on('next-music',function( channel, music ){
 		callNext( true );
 		console.log('chamou outra musica');
-	});
-	
+	});	
 	mPlayer.on('musicPlaying',function( pos, current, total ){ 
 		$('#stream div').css('width', Math.round( pos * 100 ) + "%" );
 		$('#playback_stream > div').last().find('span').eq(0).html( timeFormat(current) );
@@ -103,16 +102,27 @@ $(function(){
 	mManager.on('update-avaiable',function (){  
 		toggleBotaoAtualizar( true );
 	});
+	mManager.on('block-next',function ( status ){  
+		$('#bt-forward').toggleClass('disabled',status);
+	});
 	mManager.on('just-one',function (){ l.log( "Somente uma música da playlist atende aos requesitos. "); });
 	mManager.on('new-playlists',function (arr_playlists){ 
 		playlists.html("");
+
+		playlists.addItem($('<li><i class="fa fa-play"></i>'+arr_playlists[0].playlist+'</li>'), {type:"agregada"});
 		for(i=0;i<arr_playlists.length;i++){
-			playlists.addItem($('<li><i class="fa fa-play"></i>'+arr_playlists[i].playlist+'</li>'), arr_playlists[i]);
+			if( arr_playlists[i].type == 'individual' ){
+				playlists.addItem($('<li><i class="fa fa-play"></i>'+arr_playlists[i].playlist+'</li>'), arr_playlists[i]);				
+			}
 		}
 		
 		toggleBotaoAtualizar( false );
 	});
 	
+	mPlayer.on('change-status',function(status){
+		$('#bt-play').toggleClass('fa-play',(status == 'paused' ));
+		$('#bt-play').toggleClass('fa-pause',(status != 'paused' ));
+	});
 
 	/* VIEWS */
 
@@ -177,7 +187,7 @@ $(function(){
 function toggleBotaoAtualizar( forceShow ){
 	console.log("BOTÃO UPDATE AVAIABLE"+forceShow+ $("#msg_to_client").html());
 	//$("#msg_to_client").html("Existe uma atualização disponível.")
-	$(".msg_to_client").toogleClass("hide", (forceShow));
+	$(".msg_to_client").toggleClass("hide", !(forceShow));
 }
 
 
