@@ -29,7 +29,7 @@ body {
 
 textarea {
 	height: 150px;
-	width: 450px;
+	width: 448px;
 	padding: 10px 15px;
 	line-height: 20px;
 	margin: 0px;
@@ -38,19 +38,27 @@ textarea {
 	background: #25bec1;
 }
 
+textarea#console {
+	background: rgb(186, 186, 186);
+	font-family: monospace;
+}
+
 .hide{
 	visibility: hidden;
-	display: none;
+	display: none !important;
 }
 
 /**/
 
 #top {
 	clear: both;
-	width: 100%;
+	width: 448px;
 	display: table;
 	border-radius: 40px 10px 0 0;
 	background: black;
+	border: 1px solid rgba(255,255,255,0.15);
+	border-width: 1px 1px 0;
+	border-style: inset;
 }
 
 #top #logo {
@@ -105,12 +113,14 @@ textarea {
 	height: 298px;
 	background: black;
 	border-radius: 0 0 15px 15px;
+	border: 1px solid rgba(255,255,255,0.15);
+	border-width: 0 1px 1px;
 }
 
 #body .screen{
 	float: left;
 	max-height: 294px;
-	width: 450px;
+	width: 448px;
 	overflow: hidden;
 }
 
@@ -174,26 +184,25 @@ div#likes i:hover {
 
 #list {
 	height: 133px;
-	width: 430px;
+	width: 408px;
 	margin: 0px;
 	-webkit-user-select: default;
 	border-radius: 0;
 	background: #25bec1;
 	color: black;
-	padding: 20px 40px;
+	padding: 20px;
 }
 
-#list table{
-	width: 100%;
-}
-
-#list td {
+#list span {
 	width: 50%;
-	height: 27px;
-	font-size: 15px;
+	display: inline-flex;
+	height: 18px;
+	margin-bottom: 9px;
+	overflow: hidden;
+	cursor: default;
 }
 
-#list tr:first-child {
+#list div div:first-child span{
 	/*font-weight: bolder;*/
 	color: white;
 }
@@ -212,6 +221,12 @@ div#likes i:hover {
 }
 
 /**/
+
+#playlists_screen ul {
+	height: 160px;
+	background: #0B0B0B;
+	overflow: auto;
+}
 
 #playlists_screen li i {
 	margin-right: 5px;
@@ -251,7 +266,6 @@ div#likes i:hover {
 #playlists_screen #moods:hover  #moodLpin {  background: black }
 /*#playlists_screen #moods:active #moodLpin {  background: #25bec1; }*/
 
-
 #playlists_screen li {
 	height: 23px;
 	background: #25bec1;
@@ -267,14 +281,20 @@ div#likes i:hover {
 }
 
 #playlists_screen li:hover {
-	background: #A2A2B6;
+	background: #707091;
 }
 
 /**/
 
 #config_screen input[type=text]{
-	width: 65%;
+	background: rgba(255,255,255,0.1);
+	width: 75%;
 	float: right;
+	border-width: 0 0 1px 0;
+}
+
+#config_screen input:focus {
+	background: rgba(255, 255, 255, 0.25);
 }
 
 /**/
@@ -285,7 +305,7 @@ div#likes i:hover {
 
 .commands input,
 .commands .btn{
-margin-bottom: 10px;
+	margin-bottom: 15px;
 	padding: 5px 15px;
 	border: 1px solid;
 	background: none;
@@ -302,11 +322,13 @@ margin-bottom: 10px;
 .commands input:focus,
 .commands .btn:hover,
 .commands .btn:focus{
-	margin-bottom: 10px;
-	padding: 5px 15px;
 	background: black;
+	border-color: #A2A2B6;
+}
+
+.commands .btn:hover,
+.commands .btn:focus{
 	color: #A2A2B6;
-	border: 1px solid #A2A2B6;
 }
 
 .commands input[type=button],
@@ -324,10 +346,7 @@ margin-bottom: 10px;
 
 .commands input:active,
 .commands .btn:active{
-	margin-bottom: 10px;
-	padding: 5px 15px;
 	background: white;
-	color: black;
 	border: 1px solid white;
 }
 
@@ -341,23 +360,37 @@ margin-bottom: 10px;
 	margin: 9px -5%;
 }
 
-fieldset {
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+.commands .download-count {
+	margin-bottom: 10px;
+	padding: 5px 15px;
+	margin: 15px -5%;
+	display: block;
+	float: left;
+	opacity: 0.15;
 }
+
+form {
+	text-align: right;
+}
+
+fieldset {
+	margin-bottom: 20px;
+	padding: 0 10px 10px;
+	margin-left: -13px;
+	margin-right: -13px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 label {
 	width: 100%;
 	display: block;
 	clear: both;
 	font-size: 14px;
+	text-align: right;
+	line-height: 26px;
 }
 
 label input{
-<<<<<<< HEAD
-  float: right;
-}
-
-#bt-update {
-	margin-top:10px;
+	float: right;
+	margin-left: 10px;
 }

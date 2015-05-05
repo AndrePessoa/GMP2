@@ -40,10 +40,10 @@
 				<div id="play_screen" class="screen">
 					<!--<textarea id="list" readonly="readonly"></textarea>-->
 					<div  id="list">
-						<table>
-							<tbody>
-							</tbody>
-						</table>
+						<div>
+							<div>
+							</div>
+						</div>
 					</div>
 					<div class="controls">					
 						<div id="playback_control">				
@@ -65,7 +65,8 @@
 						</div>
 
 						<form class="commands">
-							<input class="msg_to_client hide" type="button" value="Atualizar listas" >
+							<input class="msg_to_client disabled hide" type="button" value="Atualizar listas" >
+							<div class="download-count hide">baixando atualização ( <span>10</span> ) </div>
 						</form>
 
 					</div>
@@ -97,12 +98,10 @@
 									<input type="submit" value="salvar"></input>
 								</label>
 							</fieldset>
-							<label>
+							<form action="#">
 								<input type="button" value="atualizar playlists" id="bt-update"></input>
-							</label>
-							<label>
 								<input type="button" value="manutenção" name="irDebbug"></input>
-							</label>
+							</form>
 						</form>
 					</div>
 				</div>				

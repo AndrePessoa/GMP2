@@ -2,9 +2,9 @@
 	"_events": {},
 	"version": "0.1",
 	"player": {
-		"client": "Teste Misto",
-		"name": "teste-3",
-		"password": "asd"
+		"client": "Cliente de Teste",
+		"name": "teste-8",
+		"password": "123sdf4"
 	},
 	"server": {
 		"protocol": "https:",

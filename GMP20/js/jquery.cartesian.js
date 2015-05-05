@@ -3,7 +3,11 @@ $(function(){
 	 
 		var defaults = {
 			pin: ".pin",
-			animate: 500
+			animate: 500,
+			x: 0,
+			y: 0,
+			pX: 0,
+			pY: 0
 		};
 
 		var settings = $.extend({}, defaults, options);
@@ -24,27 +28,57 @@ $(function(){
 	        var elem = $( this );
 	 
 	        var pin = {
-				x: 0,
-				y: 0,
+				x: settings.x,
+				y: settings.y,
+				pX: settings.pX,
+				pY: settings.pY,
 				elem: elem.find(settings.pin)
 			};
+
+	        elem.val = function( val ){
+	        	
+	        	if( val.pX !== undefined ){
+	        		pin.pX = val.pX;
+	        		pin.x  = val.pX * elem.width();
+	        		
+	        		pin.pY = val.pY ;	  
+					pin.y  = val.pY * elem.height();	        		      		
+
+	        		move( pin.elem, { top: pin.y, left: pin.x } );
+	        	}else if( val.x !== undefined ){
+	        		pin.x = val.x;
+	        		pin.pX = val.x / elem.width();
+
+	        		pin.y = val.y ;
+	        		pin.pY = val.y / elem.height();
+
+	        		move( pin.elem, { top: pin.y, left: pin.x } );
+	        	}
+	    		var result = { 
+	    			x: pin.x, 
+	    			y: pin.y, 
+	    			pX: (pin.x/elem.width()), 
+	    			pY: (pin.y/elem.height())
+	    		};
+
+	    		return result;
+	    	};
+
+			elem.val( pin );// pos the init
+			console.log("CARTESIAN",pin);
 
 	        elem.click(function(e){
 				var posX = $(this).offset().left, posY = $(this).offset().top;
 				pin.x = (e.pageX - posX);
 				pin.y = (e.pageY - posY);
 
-				move( pin.elem, { top: pin.y, left: pin.x } );
+				var result = elem.val( { x: pin.x, y: pin.y } );
 
-				var result = { x: pin.x, y: pin.y, pX: (pin.x/elem.width()), pY: (pin.y/elem.height()) };
+				//{ x: pin.x, y: pin.y, pX: (pin.x/elem.width()), pY: (pin.y/elem.height()) };
 
 				elem.trigger( jQuery.Event( "change", result ) );
 	        });
 
-	        elem.val = function(){
-	    		var result = { x: pin.x, y: pin.y, pX: (pin.x/elem.width()), pY: (pin.y/elem.height()) };
-	    		return result;
-	    	};
 	 
 	    });
 	 
