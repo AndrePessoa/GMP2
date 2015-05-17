@@ -98,10 +98,11 @@ $(function(){
 	mPlayer.on('musicStart',function( channel, music ){ 
 		//$('#list').val( music.name + '\n' + $('#list').val() ); 
 		if( music.type !== "spots" && music.type !== "chamada" ) adicionarMusicaTabela( music );
+		$('#playback_stream').attr('class',music.type);
 	});
 	mPlayer.on('next-music',function( channel, music ){
 		callNext( true );
-		console.log('chamou outra musica');
+		console.log('chamou outra musica', music);
 	});	
 	mPlayer.on('musicPlaying',function( pos, current, total ){ 			
 		if( isNaN(current) || isNaN(total) ){
@@ -139,6 +140,7 @@ $(function(){
 	});
 	
 	mPlayer.on('change-status',function(status){
+		$('#list div div').toggleClass('paused',(status == 'paused' ));
 		$('#bt-play').toggleClass('fa-play',(status == 'paused' ));
 		$('#bt-play').toggleClass('fa-pause',(status != 'paused' ));
 	});
