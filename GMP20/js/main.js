@@ -60,13 +60,10 @@ tray.on('click', function(){ win.restore(); });
 tray.menu = menu;
 // ENDS TRAY
 
-
 //Remote control events
 rControl.on('reset-lists',function(){  mManager.resetLists(); });
 rControl.on('play-special',function( data ){   mManager.playSpecial( data ); });
 rControl.on('nothing',function(){  /*/console.log('no orders');/*/ });
-
-
 
 config.on('loadcomplete',function(){ 
 	l.log("Config carregado com sucesso"); 
@@ -99,7 +96,15 @@ $(function(){
 		//$('#list').val( music.name + '\n' + $('#list').val() ); 
 		if( music.type !== "spots" && music.type !== "chamada" ) adicionarMusicaTabela( music );
 		$('#playback_stream').attr('class',music.type);
+		if( music.type == "spots" ){
+			sConnector.sendLog('P08', mPlayer.currentMusic.audioid + ": " + mPlayer.currentMusic.name + " : "+ mPlayer.currentMusic.album );
+		}
 	});
+	mPlayer.on('extraStart',function( music ){
+		$('#playback_stream').attr('class',music.type);
+		sConnector.sendLog('P04', mPlayer.currentMusic.audioid + ": " + mPlayer.currentMusic.name + " : "+ mPlayer.currentMusic.album );
+	});
+
 	mPlayer.on('next-music',function( channel, music ){
 		callNext( true );
 		console.log('chamou outra musica', music);
@@ -111,7 +116,6 @@ $(function(){
 		$('#stream div').css('width', Math.round( pos * 100 ) + "%" );
 		$('#playback_stream > div').last().find('span').eq(0).html( timeFormat(current) );
 		$('#playback_stream > div').last().find('span').eq(1).html( timeFormat(total) );
-
 	});
 	mManager.on('ready-to-start',function (){  
 		if(mPlayer.getStatus()=="stopped"){ // testa se está tocando
@@ -137,9 +141,9 @@ $(function(){
 		}
 		
 		toggleBotaoAtualizar( false );
-	});
-	
+	});	
 	mPlayer.on('change-status',function(status){
+		sConnector.sendLog((status == 'paused' )?'P06':'P07', mPlayer.currentMusic );
 		$('#list div div').toggleClass('paused',(status == 'paused' ));
 		$('#bt-play').toggleClass('fa-play',(status == 'paused' ));
 		$('#bt-play').toggleClass('fa-pause',(status != 'paused' ));
@@ -187,7 +191,8 @@ $(function(){
 	$('#bt-play').click(function(){
 		mPlayer.play();
 	});
-	$('#bt-forward').click(function(){
+	$('#bt-forward').click(function(){		
+		sConnector.sendLog('P04', mPlayer.currentMusic.audioid + ": " + mPlayer.currentMusic.name + " : "+ mPlayer.currentMusic.album );
 		callNext( false );
 	});
 	$('#bt-teste').click(function(){
