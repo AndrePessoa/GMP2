@@ -2,9 +2,9 @@
 	"_events": {},
 	"version": "0.1",
 	"player": {
-		"client": "Cliente de Teste",
-		"name": "teste-8",
-		"password": "123sdf4"
+		"client": "Teste simples",
+		"name": "teste-simples",
+		"password": "safada"
 	},
 	"server": {
 		"protocol": "https:",

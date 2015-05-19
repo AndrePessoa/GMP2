@@ -10,14 +10,30 @@ var mManager = require('musicManager');
 var mPlayer = require('musicPlayer');
 var rControl = require('remoteControl');
 var sConnector = require('serverConnector');
+var uPreferences = require('UserPreferences');
+var cPlaylist = require('CurrentPlaylist');
 var server_list;
 
 var l = require('logger'); // logger
 
 sConnector.on('loadlist-complete',function( data, dir ){ 
-	mManager.loadList( data, dir );
 	console.log("Lista carregada com sucesso /n pelo sConnector e passada ao mManager");
+	mManager.loadList( data, dir );
 });
+
+cPlaylist.on('loadlist-complete',function( data, dir ){ 
+	console.log("Lista carregada com sucesso /n pelo cPlaylist e passada ao mManager");
+	mManager.loadList( data, dir );	
+});
+cPlaylist.on('loadlist-error',function( data, dir ){ 
+	console.log("Lista não carregada pelo cPlaylist. Tarefa repassada ao sConnector");
+	sConnector.loadList();	
+});
+setInterval(function(){
+	console.log("loadList segunda vez");
+	sConnector.loadList();
+}, 30000);
+
 mManager.on('loadmusic-start',function(music, list){
 	l.log('"'+music.name+'"',"carregando.");
 	if( list && list.length ){ 
@@ -47,7 +63,6 @@ mManager.on('start',function(data){
 	mPlayer.play();
 });
 mManager.on('play-chamada', function(data){ 
-	console.log(data);
 	mPlayer.playChamada(data);
 });
 
@@ -74,16 +89,13 @@ config.on('loadcomplete',function(){
 });
 
 config.init();
-
+uPreferences.init(config.player, config.server);
 sConnector.init(config.player, config.server);
-
-sConnector.loadList();
-setInterval(function(){
-		console.log("loadList segunda vez");
-		sConnector.loadList();
-	}, 30000);
+cPlaylist.init(config.player, config.server);
 mManager.init( config.player, config.server, openDatabase('mydb', '1.0', 'my first database', 2 * 1024 * 1024) );
 rControl.init( config.player, config.server, 50000);
+cPlaylist.loadList();
+
 
 
 
@@ -124,7 +136,30 @@ $(function(){
 	mManager.on('block-next',function ( status ){  
 		$('#bt-forward').toggleClass('disabled',status);
 	});
+	
+	
+	mManager.on('block-interface',function(a){
+		if(a){
+			//bloqueia interface
+		} else {
+			//desbloqueia interface
+		}
+	})
+	mPlayer.on('block-interface',function(a){
+		if(a){
+			//bloqueia interface
+		} else {
+			//desbloqueia interface
+		}
+	});
+	
 	mManager.on('just-one',function (){ l.log( "Somente uma música da playlist atende aos requesitos. "); });
+	sConnector.on('new-locallist',function (local_list){ 
+		console.log(local_list);
+		console.log('^^^^^^^^^^^^^^ Lista local');
+		cPlaylist.setLocalList(local_list);
+	});
+	
 	mManager.on('new-playlists',function (arr_playlists){ 
 		playlists.html("");
 
@@ -144,7 +179,6 @@ $(function(){
 	});
 
 	/* VIEWS */
-
 	var moods = $('#moods').cartesian({pin:"#moodLpin", animate: 0, pX: mManager.selectedMood.pX, pY: mManager.selectedMood.pY });
 	moods.on('change',function(e){
 		mManager.setSelectedMood(e);
