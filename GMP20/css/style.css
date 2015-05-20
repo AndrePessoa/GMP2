@@ -54,7 +54,6 @@ textarea#console {
 	clear: both;
 	width: 448px;
 	display: table;
-	border-radius: 40px 10px 0 0;
 	background: black;
 	border: 1px solid rgba(255,255,255,0.15);
 	border-width: 1px 1px 0;
@@ -112,7 +111,6 @@ textarea#console {
 	overflow-x: hidden;
 	height: 298px;
 	background: black;
-	border-radius: 0 0 15px 15px;
 	border: 1px solid rgba(255,255,255,0.15);
 	border-width: 0 1px 1px;
 }
@@ -182,30 +180,64 @@ div#likes i:hover {
 	background: #a976b4;
 }
 
+#playback_stream.spots #stream div{
+	background: #86652B;
+}
+
+#playback_stream.spots #times {
+	color: #86652B;
+}
+
+#playback_stream.chamada #stream div{
+	background: #91F02B;
+}
+
+#playback_stream.chamada #times {
+	color: #91F02B;
+}
+
+/* */
+
 #list {
 	height: 133px;
-	width: 408px;
+	width: 448px;
 	margin: 0px;
 	-webkit-user-select: default;
 	border-radius: 0;
 	background: #25bec1;
 	color: black;
-	padding: 20px;
+	padding: 20px 0;
 }
 
 #list span {
-	width: 50%;
+	width: 45%;
 	display: inline-flex;
 	height: 18px;
-	margin-bottom: 9px;
+	line-height: 17px;
+	/*margin-bottom: 9px;*/
 	overflow: hidden;
 	cursor: default;
+
+	margin: 5px 0 4px;
+	padding: 0 5%;
+}
+
+#list span:first-child {
+	padding-right: 0;
+}
+
+#list span:last-child {
+	padding-left: 0;
 }
 
 #list div div:first-child span{
 	/*font-weight: bolder;*/
 	color: white;
 }
+
+#list div div:first-child.paused{	background: rgba(255, 0, 0, 0.31);	}
+#list div div:first-child.spots{	background: yellow;	}
+#list div div:first-child.chamada{	background: yellow;	}
 
 .scroll_content {
 	width: 500%;
