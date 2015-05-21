@@ -94,6 +94,8 @@ rControl.init( config.player, config.server, 50000);
 cPlaylist.loadList();
 
 
+//ANDRÉ, ESSA É A FUNÇÃO PARA TESTAR A CHAMADA. É SÓ COLOCAR A HORA NESSE FORMATO. nO EXEMPLO ABAIXO SÃO 22:12
+mManager.setChamadaTeste("2212");
 
 
 $(function(){
@@ -209,7 +211,7 @@ $(function(){
 			return false;
 		}
 	);
-
+	
 
 
 	$('#bt-update').add("#play_screen form.commands input[type=button]").click(function(){
