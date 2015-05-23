@@ -42,6 +42,34 @@ $(function(){
         elem.val = function(){
             return selected;
         };
+
+        elem.getList = function(){
+            return list;
+        }
+
+        elem.setById = function( id ){
+            if( list[id] ){
+                elem.children().removeClass('selecionado');
+                list[id].elem.addClass('selecionado');
+                self.sel = list[id].data;
+                elem.trigger( "mudou", self.sel );
+                return true;
+            } 
+            return false;
+        }
+
+        elem.setChoice = function( data ){
+            for (var i = list.length - 1; i >= 0; i--) {
+                if( list[i].data == data ){
+                    elem.children().removeClass('selecionado');
+                    list[i].elem.addClass('selecionado');
+                    self.sel = data;
+                    elem.trigger( "mudou", self.sel );
+                    return true;
+                } 
+            };
+            return false;
+        }
  
         return elem;
 
